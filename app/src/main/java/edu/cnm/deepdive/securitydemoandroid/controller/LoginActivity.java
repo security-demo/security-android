@@ -1,13 +1,12 @@
-package edu.cnm.deepdive.securityandroid.controller;
+package edu.cnm.deepdive.securitydemoandroid.controller;
 
 import android.content.Intent;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import edu.cnm.deepdive.securityandroid.R;
-import edu.cnm.deepdive.securityandroid.databinding.ActivityLoginBinding;
-import edu.cnm.deepdive.securityandroid.service.GoogleSignInService;
+import edu.cnm.deepdive.securitydemoandroid.databinding.ActivityLoginBinding;
+import edu.cnm.deepdive.securitydemoandroid.service.GoogleSignInService;
 
 public class LoginActivity extends AppCompatActivity {
 

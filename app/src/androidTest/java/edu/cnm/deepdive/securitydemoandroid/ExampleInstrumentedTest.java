@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.securityandroid;
+package edu.cnm.deepdive.securitydemoandroid;
 
 import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;

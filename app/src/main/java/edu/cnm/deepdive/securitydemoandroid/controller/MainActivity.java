@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.securityandroid.controller;
+package edu.cnm.deepdive.securitydemoandroid.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import edu.cnm.deepdive.securityandroid.R;
-import edu.cnm.deepdive.securityandroid.service.GoogleSignInService;
+import edu.cnm.deepdive.securitydemoandroid.R;
+import edu.cnm.deepdive.securitydemoandroid.service.GoogleSignInService;
 
 public class MainActivity extends AppCompatActivity {
 

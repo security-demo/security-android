@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.securityandroid;
+package edu.cnm.deepdive.securitydemoandroid;
 
 import org.junit.Test;
 
