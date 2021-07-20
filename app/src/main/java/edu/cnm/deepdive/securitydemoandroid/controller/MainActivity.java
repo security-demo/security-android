@@ -2,6 +2,8 @@ package edu.cnm.deepdive.securitydemoandroid.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
+import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,22 +13,25 @@ import android.view.Menu;
 import android.view.MenuItem;
 import edu.cnm.deepdive.securitydemoandroid.R;
 import edu.cnm.deepdive.securitydemoandroid.service.GoogleSignInService;
+import edu.cnm.deepdive.securitydemoandroid.viewmodel.MainViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
+  private MainViewModel viewModel;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
+    setUpViewModel();
+  }
 
-    FloatingActionButton fab = findViewById(R.id.fab);
-    fab.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-            .setAction("Action", null).show();
+  private void setUpViewModel() {
+    viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+    viewModel.getThrowable().observe(this, throwable -> {
+      if(throwable != null) {
+        Toast.makeText(this, "Throwable: " + throwable.getLocalizedMessage(), Toast.LENGTH_LONG).show();
       }
     });
   }

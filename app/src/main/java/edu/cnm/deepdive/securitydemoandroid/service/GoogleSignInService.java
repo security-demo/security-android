@@ -11,6 +11,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import edu.cnm.deepdive.securitydemoandroid.BuildConfig;
+import io.reactivex.Single;
 
 public class GoogleSignInService {
 
@@ -21,7 +22,7 @@ public class GoogleSignInService {
   private GoogleSignInAccount account;
 
   private GoogleSignInService() {
-    GoogleSignInOptions options  = new GoogleSignInOptions.Builder()
+    GoogleSignInOptions options = new GoogleSignInOptions.Builder()
         .requestEmail()
         .requestId()
         .requestProfile()
@@ -42,9 +43,13 @@ public class GoogleSignInService {
     return account;
   }
 
-  public Task<GoogleSignInAccount> refresh() {
-    return client.silentSignIn()
-        .addOnSuccessListener(this::setAccount);
+  public Single<GoogleSignInAccount> refresh() {
+    return Single.create((emitter) ->
+        client.silentSignIn()
+            .addOnSuccessListener(this::setAccount)
+            .addOnSuccessListener(emitter::onSuccess)
+            .addOnFailureListener(emitter::onError)
+    );
   }
 
   public void startSignIn(Activity activity, int requestCode) {
@@ -73,7 +78,7 @@ public class GoogleSignInService {
     this.account = account;
     if (account != null) {
       //noinspection ConstantConditions
-      Log.d(getClass().getSimpleName(), account.getIdToken());
+      Log.d(getClass().getSimpleName() + "Bearer Token ", account.getIdToken());
     }
   }
 
